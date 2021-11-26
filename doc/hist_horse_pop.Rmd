@@ -15,6 +15,7 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 knitr::opts_knit$set(eval.after = "fig.cap")
+library(knitr)
 library(tidyverse)
 ```
 
@@ -69,7 +70,8 @@ max_horses <- horse_pop %>%
   group_by(Province) %>% 
   summarize(Maximum = max(Value),
             Minimum = min(Value))
-max_horses
+kable(max_horses, 
+      caption = "Table 1. Maximum and minimum number of horses for each province between 1940 - 1972")
 ```
 
 Below we zoom in and look at the province of `r params$province`:
@@ -88,5 +90,7 @@ province_plot <- horse_pop %>%
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 province_plot
 ```
+
+Figure 2. Horse populations for `r params$province` between 1940 - 1972.
 
 # References
